@@ -4,10 +4,10 @@ import random
 from TwitterAPI import TwitterAPI
 from functools import *
 import json
-consumer_key= "TCMXtnTY1MnS28Hxfq8WVQ09E"
-consumer_secret= "GZUNZD2Yo0ZdtjvjFdgfzAJ7XC3GA5HXvjv1w13iF43iBWy7sT"
-access_token_key= "853011873490501632-adIZudaCei1LenZepfNHmyTPJLlWMm9"
-access_token_secret= "esNuRlVrBZpS1o17w3K71sAwR4b7jlvPQ9VQrGRmW1rzu"
+consumer_key= ""
+consumer_secret= ""
+access_token_key= ""
+access_token_secret= ""
 
 
 def randomizer(bound):
