@@ -4,7 +4,6 @@ __pycache__
 .idea
 Output.txt
 submit.py
-suffix.py
 test_Builder.py
 test_immDict.py
 test_suffix.py
