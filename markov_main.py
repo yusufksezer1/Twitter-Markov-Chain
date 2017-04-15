@@ -30,13 +30,14 @@ api = TwitterAPI(consumer_key,
 '''
 List = []
 tLastID = None
-rLastID = None
+#rLastID = None
 for i in range(0, 15):
     t = api.request('statuses/user_timeline', {'screen_name': "realDonaldTrump", 'count': 200, "max_id": tLastID})
-    r = api.request('statuses/user_timeline', {'screen_name': "marcorubio", 'count': 200, "max_id": rLastID})
+    #r = api.request('statuses/user_timeline', {'screen_name': "marcorubio", 'count': 200, "max_id": rLastID})
     tLastID = t.response.json()[-1]['id']
-    rLastID = r.response.json()[-1]['id']
-    List += [t.json()] + [r.json()]
+    #rLastID = r.response.json()[-1]['id']
+    #List += [t.json()] + [r.json()]
+    List += [t.json()]
 
 '''
 # Flattens List so that we have one list of all the words from Trump's most-recent 3200 tweets
@@ -70,7 +71,6 @@ file_name = 'Output.txt'
 chain = builder.build(file_name)
 num_words = 20
 outstr = generator.generate(chain, randomizer, num_words, builder.NONWORD)
-api.request("statuses/update", {'status': "*Based off Trump/Rubio Tweets*: " + outstr})
+api.request("statuses/update", {'status': "*Based off Trump Tweets*: " + outstr})
 print(outstr)
 print("*****************SUCCESS!***********************")
-
