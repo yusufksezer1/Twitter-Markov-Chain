@@ -7,10 +7,10 @@ import time
 import json
 
 # Necessary TwitterAPI keys, use keys linked to the account which you want to post Tweets to
-consumer_key= ""
-consumer_secret= ""
-access_token_key= ""
-access_token_secret= ""
+consumer_key='TCMXtnTY1MnS28Hxfq8WVQ09E'
+consumer_secret='GZUNZD2Yo0ZdtjvjFdgfzAJ7XC3GA5HXvjv1w13iF43iBWy7sT'
+access_token_key='853011873490501632-adIZudaCei1LenZepfNHmyTPJLlWMm9'
+access_token_secret='esNuRlVrBZpS1o17w3K71sAwR4b7jlvPQ9VQrGRmW1rzu'
 
 
 def randomizer(bound):
@@ -26,16 +26,17 @@ api = TwitterAPI(consumer_key,
 # Request 200 Tweets with the TwitterAPI
 # Record the ID of the last Tweet retrieved from the request
 # Pass the ID as a parameter in the next request to get the next 200 tweets
-# Retrieves 200 Tweets per iteration for a total of 3200 Tweets
+# Retrieves 200 Tweets per iteration for a total of 3200 Tweets (half from Trump, half from Rubio)
 '''
 List = []
-lastID = None
+tLastID = None
+rLastID = None
 for i in range(0, 15):
-    t = api.request('statuses/user_timeline', {'screen_name': "realDonaldTrump", 'count': 200, "max_id": lastID})
-    iter = t.get_iterator()
-    last = [tweet for tweet in iter][-1]
-    lastID = last['id']
-    List += [t.json()]
+    t = api.request('statuses/user_timeline', {'screen_name': "realDonaldTrump", 'count': 200, "max_id": tLastID})
+    r = api.request('statuses/user_timeline', {'screen_name': "marcorubio", 'count': 200, "max_id": rLastID})
+    tLastID = t.response.json()[-1]['id']
+    rLastID = r.response.json()[-1]['id']
+    List += [t.json()] + [r.json()]
 
 '''
 # Flattens List so that we have one list of all the words from Trump's most-recent 3200 tweets
@@ -49,8 +50,8 @@ flattenedList = list(map(lambda x: "&" if x == "&amp;" else x, filter(lambda z: 
 # Randomly selects three words from Trump's Tweets to write to the beginning of the file
 # Our Markov Chain uses the first three words of the file to create the initial prefix-suffix pair
 # This ensures that each Markov-Generated Tweet starts with different words
-randomInt = randomizer(len(flattenedList) - 4)
 '''
+randomInt = randomizer(len(flattenedList) - 4)
 randomSelection = flattenedList[randomInt:randomInt+3]
 
 '''
@@ -69,7 +70,7 @@ file_name = 'Output.txt'
 chain = builder.build(file_name)
 num_words = 20
 outstr = generator.generate(chain, randomizer, num_words, builder.NONWORD)
-api.request("statuses/update", {'status': outstr})
+api.request("statuses/update", {'status': "*Based off Trump/Rubio Tweets*: " + outstr})
 print(outstr)
 print("*****************SUCCESS!***********************")
 
