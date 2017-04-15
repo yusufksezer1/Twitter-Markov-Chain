@@ -2,10 +2,7 @@ TwitterAPI
 tweetserver
 __pycache__
 .idea
-immdict.py
-markov.py
 Output.txt
-prefix.py
 submit.py
 suffix.py
 test_Builder.py
