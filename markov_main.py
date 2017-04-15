@@ -6,11 +6,11 @@ from functools import *
 import time
 import json
 
-# Necessary TwitterAPI keys to post Tweets as @Robot_Rubio_
-consumer_key= "TCMXtnTY1MnS28Hxfq8WVQ09E"
-consumer_secret= "GZUNZD2Yo0ZdtjvjFdgfzAJ7XC3GA5HXvjv1w13iF43iBWy7sT"
-access_token_key= "853011873490501632-adIZudaCei1LenZepfNHmyTPJLlWMm9"
-access_token_secret= "esNuRlVrBZpS1o17w3K71sAwR4b7jlvPQ9VQrGRmW1rzu"
+# Necessary TwitterAPI keys, use keys linked to the account which you want to post Tweets to
+consumer_key= ""
+consumer_secret= ""
+access_token_key= ""
+access_token_secret= ""
 
 
 def randomizer(bound):
@@ -58,7 +58,7 @@ with open("Output.txt", "w", encoding='utf-8') as text_file:
         text_file.write(item + " ")
 
 
-# Generate the new Tweet and post it to the @Robot_Rubio_ Twitter account
+# Generate the new Tweet and post it to the Twitter account linked to the TwitterAPI keys
 file_name = 'Output.txt'
 chain = builder.build(file_name)
 num_words = 20
