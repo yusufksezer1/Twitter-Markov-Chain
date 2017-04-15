@@ -2,7 +2,6 @@ TwitterAPI
 tweetserver
 __pycache__
 .idea
-generator.py
 immdict.py
 markov.py
 Output.txt
