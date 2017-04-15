@@ -1,0 +1,15 @@
+TwitterAPI
+tweetserver
+__pycache__
+.idea
+generator.py
+immdict.py
+markov.py
+Output.txt
+prefix.py
+submit.py
+suffix.py
+test_Builder.py
+test_immDict.py
+test_suffix.py
+TweetGenerator.py
